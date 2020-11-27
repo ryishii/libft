@@ -6,7 +6,7 @@
 /*   By: ryishii <ryishii@student.42tokyo.j>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 22:14:28 by ryishii           #+#    #+#             */
-/*   Updated: 2020/11/27 00:54:27 by ryishii          ###   ########.fr       */
+/*   Updated: 2020/11/27 14:44:50 by ryishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int		i;
+	size_t	i;
 	char	*str;
 
 	str = (char*)s;

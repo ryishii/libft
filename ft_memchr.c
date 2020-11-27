@@ -6,7 +6,7 @@
 /*   By: ryishii <ryishii@student.42tokyo.j>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 17:16:24 by ryishii           #+#    #+#             */
-/*   Updated: 2020/11/26 03:19:24 by ryishii          ###   ########.fr       */
+/*   Updated: 2020/11/27 14:40:43 by ryishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	*ft_memchr(const void *s, int c, size_t n)
 {
 	unsigned char	*str;
-	int				i;
+	size_t			i;
 
 	str = (unsigned char*)s;
 	i = 0;
-	while (i < (int)n)
+	while (i < n)
 	{
 		if (str[i] == (unsigned char)c)
 			return (&str[i]);

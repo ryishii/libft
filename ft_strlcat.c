@@ -6,7 +6,7 @@
 /*   By: ryishii <ryishii@student.42tokyo.j>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 13:34:32 by ryishii           #+#    #+#             */
-/*   Updated: 2020/11/27 01:26:14 by ryishii          ###   ########.fr       */
+/*   Updated: 2020/11/27 14:43:57 by ryishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ size_t	ft_strlcat(char *dest, char *src, size_t size)
 {
 	size_t	dlen;
 	size_t	slen;
-	int		i;
+	size_t	i;
 
 	dlen = ft_strlen(dest);
 	slen = ft_strlen(src);
@@ -27,9 +27,9 @@ size_t	ft_strlcat(char *dest, char *src, size_t size)
 	{
 		if (dlen + i + 1 == size)
 			break ;
-		dest[(int)dlen + i] = src[i];
+		dest[dlen + i] = src[i];
 		i++;
 	}
-	dest[(int)dlen + i] = '\0';
+	dest[dlen + i] = '\0';
 	return (dlen + slen);
 }

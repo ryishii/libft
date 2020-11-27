@@ -6,7 +6,7 @@
 /*   By: ryishii <ryishii@student.42tokyo.j>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 21:03:55 by ryishii           #+#    #+#             */
-/*   Updated: 2020/11/27 00:55:56 by ryishii          ###   ########.fr       */
+/*   Updated: 2020/11/27 14:52:12 by ryishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 char	*ft_strdup(const char *s1)
 {
-	int		i;
-	char	*s2;
+	size_t	len;
+	size_t	i;
+	char	*res;
 
-	i = ft_strlen(s1);
-	if (!(s2 = malloc(sizeof(char) * i + 1)))
+	len = ft_strlen(s1);
+	if (!(res = (char*)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	i = 0;
 	while (s1[i] != '\0')
 	{
-		s2[i] = s1[i];
+		res[i] = s1[i];
 		i++;
 	}
-	s2[i] = '\0';
-	return (s2);
+	res[i] = '\0';
+	return (res);
 }
