@@ -6,13 +6,13 @@
 /*   By: ryishii <ryishii@student.42tokyo.j>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 22:00:47 by ryishii           #+#    #+#             */
-/*   Updated: 2020/11/27 15:18:25 by ryishii          ###   ########.fr       */
+/*   Updated: 2020/11/27 16:45:26 by ryishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_isspace(char c)
+static int		ft_isspace(char c)
 {
 	int i;
 
@@ -26,7 +26,7 @@ static int	ft_isspace(char c)
 	return (0);
 }
 
-static int	ft_ispm(char c)
+static int		ft_ispm(char c)
 {
 	if (c == '-')
 		return (-1);
@@ -35,11 +35,59 @@ static int	ft_ispm(char c)
 	return (0);
 }
 
-int			ft_atoi(const char *str)
+static size_t	atoi_strlen(char *str)
+{
+	size_t	i;
+	size_t	len;
+
+	i = 0;
+	len = 0;
+	while (ft_isspace(str[i]))
+		i++;
+	if (ft_ispm(str[i]) != 0)
+		i++;
+	while ('0' <= str[i] && str[i] <= '9')
+	{
+		len++;
+		i++;
+	}
+	return (len);
+}
+
+static int		cmp_lmax(char *str, int sign, size_t i)
+{
+	long	n;
+	size_t	tmp;
+
+	n = 0;
+	tmp = i;
+	i += 1;
+	if (atoi_strlen(str) > 19 && (sign == 1 || sign == 0)) 
+		return (-1);
+	else if (atoi_strlen(str) > 19 && sign == -1)
+		return (0);
+	else
+	{
+		while ('0' <= str[i] && str[i] <= '9')
+		{
+			n = n * 10 + str[i++] - '0';
+			if (n > 223372036854775807 && (sign == 0 || sign == 1) 
+					&& str[tmp] == '9')
+				return (-1);
+			else if (n > 223372036854775808 && sign == -1 
+					&& str[tmp] == '9')
+				return (0);
+		}
+	}
+	return (1);
+}
+
+
+int				ft_atoi(const char *str)
 {
 	unsigned long	res;
 	int				sign;
-	int				i;
+	size_t			i;
 
 	i = 0;
 	res = 0;
@@ -48,12 +96,10 @@ int			ft_atoi(const char *str)
 	sign = ft_ispm(str[i]);
 	if (sign != 0)
 		i++;
+	if (cmp_lmax((char*)str, sign, i) != 1)
+		return (cmp_lmax((char*)str, sign, i));
 	while ('0' <= str[i] && str[i] <= '9')
 		res = res * 10 + str[i++] - '0';
-	if (sign == 1 && res > LONG_MAX)
-		return (-1);
-	if (sign == -1 && res - 1 > LONG_MAX)
-		return (0);
 	if (sign == 0)
 		return ((int)res);
 	return ((int)res * sign);
